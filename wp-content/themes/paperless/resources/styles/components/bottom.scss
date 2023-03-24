@@ -1,0 +1,9 @@
+.main-bottom_bar {
+  padding: 15px 0;
+
+  &__menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+}

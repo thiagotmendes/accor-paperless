@@ -1,0 +1,8 @@
+.main-grid {
+  display: grid;
+  gap: 1rem;
+
+  &__home {
+    grid-template-columns: 1fr 1fr;
+  }
+}

@@ -1,0 +1,55 @@
+.main-box {
+  border: 2px solid #4D4D4D;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 0.875rem;
+  text-decoration: none;
+
+  &__image {
+    padding: 1.25rem 1rem;
+  }
+
+  &__title {
+    padding: 10px 0;
+    border-top: 2px solid #4D4D4D;
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  &--transparent {
+    color: #4D4D4D;
+
+    &:focus {
+      color: #4D4D4D;
+    }
+  }
+
+  &--background {
+    color: white;
+    border: 2px solid transparent;
+
+    .main-box__title {
+      border-top: 2px solid white;
+    }
+  }
+
+  &__cardapio {
+    flex-direction: row;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-bottom: 1px solid #6E80B0;
+    align-items: flex-start;
+    padding-top: 1rem;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+}

@@ -1,0 +1,18 @@
+.main-title {
+  font-family: 'Montserrat', sans-serif ;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.18rem;
+  line-height: 23px;
+  text-transform: uppercase;
+
+  &__cardapio {
+    font-weight: 300;
+    font-size: 1.413rem;
+    padding-left: 20px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-top: 2px solid #4D4D4D;
+    border-bottom: 2px solid #4D4D4D;
+  }
+}
