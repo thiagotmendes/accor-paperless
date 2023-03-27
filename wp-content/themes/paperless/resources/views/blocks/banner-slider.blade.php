@@ -16,17 +16,17 @@
     </div>
   </div>
 
-  @if(is_home())
-  <div class="container">
-    <header class="main-banner__titulo" style="color: {{ (!empty($colors))? $colors['principal-color'] : '' }}">
-      <h1 class="main-title text-center">
-        ibis budget BH Savassi
-      </h1>
-    </header>
-    <div class="main-banner__paragraph text-center">
-      Clique nos ícones abaixo para encontrar tudo o que precisa.
+  @if(is_front_page())
+    <div class="container">
+      <header class="main-banner__titulo" style="color: {{ (!empty($colors))? $colors['principal-color'] : '' }}">
+        <h1 class="main-title text-center">
+          {{ get_field('titulo', 'option') }}
+        </h1>
+      </header>
+      <div class="main-banner__paragraph text-center">
+        @php echo get_field('description', 'option'); @endphp
+      </div>
     </div>
-  </div>
   @else
     <div class="container">
       <header class="main-banner__titulo" style="color: {{ (!empty($colors))? $colors['principal-color'] : '' }}">
