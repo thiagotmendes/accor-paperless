@@ -139,7 +139,73 @@ add_action('widgets_init', function () {
 /**
  * Register post types
  */
+add_action('init', function () {
+  register_extended_post_type('cardapio');
+  register_extended_taxonomy('Categoria', 'cardapio');
+});
+
+/**
+ * Register ACF Blocks 
+ */
+
 add_action( 'init', function() {
-    register_extended_post_type( 'cardapio' );
-    register_extended_taxonomy( 'Categoria', 'cardapio' );
-} );
+  register_block_type( TEMPLATEPATH . '/resources/views/blocks/guia' );
+});
+// function register_acf_blocks() {
+  
+// }
+
+/**
+ *
+ */
+add_action('acf/init', function () {
+  register_extended_field_group([
+    'title' => 'Configuração do template',
+    'fields' => [
+      Tab::make('Menu Home'),
+        RadioButton::make('Estilo do menu', 'menu_style')
+          ->choices([
+            'transparent' => 'Transparente
+                              <div style="margin-top: 20px"><img src="'.get_template_directory_uri().'/resources/images/transparent-menu.png" width="100"></div>',
+            'background' => 'Background colorido
+                              <div style="margin-top: 20px"><img src="'.get_template_directory_uri().'/resources/images/bg-menu.png" width="100"></div>'
+          ])
+          ->layout('horizontal')
+          ->wrapper(['width' => "30"]),
+        Text::make('Título', 'titulo')->wrapper(['width' => "30"]),
+        WysiwygEditor::make('Descrição', 'description')->wrapper(['width' => "40"]),
+        Repeater::make('Bloco de menus Home', 'menu_bloco_home')
+          ->fields([
+            Text::make('Título do menu', 'menu_title'),
+            Link::make('Linkar a Página', 'menu_link')->returnFormat('url'),
+            Image::make('icone', 'menu_icon')->returnFormat('url'),
+          ]),
+      Tab::make('Bottom bar'),
+      Text::make('Atendimento Telefone', 'bottom_phone')->instructions('Somente números'),
+      Text::make('Atendimento WhatsApp', 'bottom_whatsapp')->instructions('Somente números'),
+      Text::make('Instagram', 'bottom_instagram')
+    ],
+    'location' => [
+      Location::where('options_page', '=', 'general-settings')
+    ],
+    'style' => 'default'
+  ]);
+
+  register_extended_field_group([
+    'title' => 'Configuração do bloco Guia',
+    'fields' => [
+      Text::make('Título', 'titulo')->wrapper(['width' => '50']),
+      Text::make('Subtítulo', 'subtitulo')->wrapper(['width' => '50']),
+      Repeater::make('Lista de itens do Guia', 'lista_itens_guia')
+        ->fields([
+          Text::make('Número item', 'numero_item'),
+          Text::make('Nome item', 'nome_item')
+        ])
+    ],
+    'location' => [
+      Location::where('block', '=', 'acf/guia')
+    ],
+    'style' => 'default'
+  ]);
+  
+});
