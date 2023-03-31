@@ -1,8 +1,12 @@
 <div class="container">
   <div class="main-grid main-grid__home">
-    @for($i = 0; $i < 6; $i++)
-      @include('components/box')
-    @endfor
+    @if(have_rows('menu_bloco_home', 'option'))
+      @php($count = 0)
+      @while(have_rows('menu_bloco_home', 'option')) @php(the_row())
+        @include('components/box')
+        @php($count++)
+      @endwhile
+    @endif
   </div>
 </div>
 

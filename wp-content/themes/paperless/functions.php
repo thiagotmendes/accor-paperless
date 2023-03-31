@@ -11,8 +11,8 @@
 |
 */
 
-if (! file_exists($composer = __DIR__.'/vendor/autoload.php')) {
-    wp_die(__('Error locating autoloader. Please run <code>composer install</code>.', 'sage'));
+if (!file_exists($composer = __DIR__ . '/vendor/autoload.php')) {
+  wp_die(__('Error locating autoloader. Please run <code>composer install</code>.', 'sage'));
 }
 
 require $composer;
@@ -29,15 +29,15 @@ require $composer;
 |
 */
 
-if (! function_exists('\Roots\bootloader')) {
-    wp_die(
-        __('You need to install Acorn to use this theme.', 'sage'),
-        '',
-        [
-            'link_url' => 'https://roots.io/acorn/docs/installation/',
-            'link_text' => __('Acorn Docs: Installation', 'sage'),
-        ]
-    );
+if (!function_exists('\Roots\bootloader')) {
+  wp_die(
+    __('You need to install Acorn to use this theme.', 'sage'),
+    '',
+    [
+      'link_url' => 'https://roots.io/acorn/docs/installation/',
+      'link_text' => __('Acorn Docs: Installation', 'sage'),
+    ]
+  );
 }
 
 \Roots\bootloader()->boot();
@@ -55,48 +55,78 @@ if (! function_exists('\Roots\bootloader')) {
 */
 
 collect(['setup', 'filters'])
-    ->each(function ($file) {
-        if (! locate_template($file = "app/{$file}.php", true, true)) {
-            wp_die(
-                /* translators: %s is replaced with the relative file path */
-                sprintf(__('Error locating <code>%s</code> for inclusion.', 'sage'), $file)
-            );
-        }
-    });
+  ->each(function ($file) {
+    if (!locate_template($file = "app/{$file}.php", true, true)) {
+      wp_die(
+      /* translators: %s is replaced with the relative file path */
+        sprintf(__('Error locating <code>%s</code> for inclusion.', 'sage'), $file)
+      );
+    }
+  });
 
 
-function mytheme_customize_register( $wp_customize ) {
-    //All our sections, settings, and controls will be added here
+function mytheme_customize_register($wp_customize)
+{
+  //All our sections, settings, and controls will be added here
 
-    $wp_customize->add_section('theme_color_section', array(
-        'title' => 'Cores do site',
-        'description' => 'Define as cores primarias e secundarias da marca',
-        'priority' => '40'
-    ));
+  $wp_customize->add_section('theme_color_section', array(
+    'title' => 'Cores do site',
+    'description' => 'Define as cores primarias e secundarias da marca',
+    'priority' => '40'
+  ));
 
-    // Add Settings
-    $wp_customize->add_setting( 'primary_color', array(
-        'default' => '#04bfbf',
-    ));
+  // Add Settings
+  $wp_customize->add_setting('primary_color', array(
+    'default' => '#04bfbf',
+  ));
 
 
-    $wp_customize->add_setting( 'secodary_color', array(
-        'default' => '#45ace0',
-    ));
+  $wp_customize->add_setting('secodary_color', array(
+    'default' => '#45ace0',
+  ));
 
-    // Add Controls
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'primary_theme_color', array(
-        'label' => 'Cor principal',
-        'section' => 'theme_color_section',
-        'settings' => 'primary_color'
-    )));
+  // Add Controls
+  $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'primary_theme_color', array(
+    'label' => 'Cor principal',
+    'section' => 'theme_color_section',
+    'settings' => 'primary_color'
+  )));
 
-    // Add Controls
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'secondary_theme_color', array(
-        'label' => 'Cor secundaria',
-        'section' => 'theme_color_section',
-        'settings' => 'secodary_color'
-    )));
+  // Add Controls
+  $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'secondary_theme_color', array(
+    'label' => 'Cor secundaria',
+    'section' => 'theme_color_section',
+    'settings' => 'secodary_color'
+  )));
 
 }
-add_action( 'customize_register', 'mytheme_customize_register' );
+
+add_action('customize_register', 'mytheme_customize_register');
+
+/**
+ * @param $file_types
+ * @return array
+ */
+function add_file_types_to_uploads($file_types){
+  $new_filetypes = array();
+  $new_filetypes['svg'] = 'image/svg+xml';
+  $file_types = array_merge($file_types, $new_filetypes );
+  return $file_types;
+}
+add_filter('upload_mimes', 'add_file_types_to_uploads');
+
+/**
+ * Add options page
+ */
+if (function_exists('acf_add_options_page')) {
+
+  acf_add_options_page(array(
+    'page_title' => 'Configurações gerais',
+    'menu_title' => 'Configurações',
+    'menu_slug' => 'general-settings',
+    'capability' => 'edit_posts',
+    'redirect' => false,
+    'position' => '2',
+  ));
+
+}
