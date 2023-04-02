@@ -153,6 +153,17 @@ add_action('init', function () {
 });
 
 /**
+ * Register ACF Blocks 
+ */
+
+add_action( 'init', function() {
+  register_block_type( TEMPLATEPATH . '/resources/views/blocks/guia' );
+});
+// function register_acf_blocks() {
+  
+// }
+
+/**
  *
  */
 add_action('acf/init', function () {
@@ -184,6 +195,23 @@ add_action('acf/init', function () {
     ],
     'location' => [
       Location::where('options_page', '=', 'general-settings')
+    ],
+    'style' => 'default'
+  ]);
+
+  register_extended_field_group([
+    'title' => 'Configuração do bloco Guia',
+    'fields' => [
+      Text::make('Título', 'titulo')->wrapper(['width' => '50']),
+      Text::make('Subtítulo', 'subtitulo')->wrapper(['width' => '50']),
+      Repeater::make('Lista de itens do Guia', 'lista_itens_guia')
+        ->fields([
+          Text::make('Número item', 'numero_item'),
+          Text::make('Nome item', 'nome_item')
+        ])
+    ],
+    'location' => [
+      Location::where('block', '=', 'acf/guia')
     ],
     'style' => 'default'
   ]);

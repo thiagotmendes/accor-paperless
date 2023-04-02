@@ -1,0 +1,45 @@
+.main-guia {
+
+    &__grid {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        padding: 0 15px;
+    }
+
+    &__linha-canal {
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 100%;
+            display: block;
+            top: 0;
+            left: 45%;
+            background-color: #6E80B0;
+            opacity: 0.2;
+        }
+    }
+
+    &__canal {
+        font-weight: 500;
+        margin-bottom: 0;
+
+        span {
+            font-weight: 300;
+        }
+        
+    }
+
+    &__caption {
+        font-size: 0.85rem;
+        line-height: 1.188rem;
+    }
+
+    &__box {
+        padding: 0 10px 0 0;
+    }
+}

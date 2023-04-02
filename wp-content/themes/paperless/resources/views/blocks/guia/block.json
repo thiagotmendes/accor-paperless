@@ -1,0 +1,13 @@
+{
+    "name": "acf/guia",
+    "title": "Guia de Canais",
+    "description": "Um bloco para inserção de canais a lista.",
+    "category": "formatting",
+    "icon": "admin-comments",
+    "keywords": ["guia", "canal"],
+    "acf": {
+        "mode": "edit",
+        "renderTemplate": "guia.blade.php"
+    },
+    "align": "full"
+}
