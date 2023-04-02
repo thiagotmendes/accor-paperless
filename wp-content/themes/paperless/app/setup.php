@@ -189,9 +189,9 @@ add_action('acf/init', function () {
             Image::make('icone', 'menu_icon')->returnFormat('url'),
           ]),
       Tab::make('Bottom bar'),
-      Text::make('Atendimento Telefone', 'bottom_phone')->instructions('Somente números'),
-      Text::make('Atendimento WhatsApp', 'bottom_whatsapp')->instructions('Somente números'),
-      Text::make('Instagram', 'bottom_instagram')
+        Text::make('Atendimento Telefone', 'bottom_phone')->instructions('Somente números'),
+        Text::make('Atendimento WhatsApp', 'bottom_whatsapp')->instructions('Somente números'),
+        Text::make('Instagram', 'bottom_instagram')
     ],
     'location' => [
       Location::where('options_page', '=', 'general-settings')
