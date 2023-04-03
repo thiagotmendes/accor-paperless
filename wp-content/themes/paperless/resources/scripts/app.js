@@ -23,8 +23,8 @@ domReady(async () => {
   })
 
   const swiperMenu = new Swiper('.swiper_menu', {
-    loop: true,
-    slidesPerView: 4,
+    loop: false,
+    slidesPerView: 3.2,
     spaceBetween: 10,
     speed: 600,
   })

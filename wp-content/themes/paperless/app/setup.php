@@ -8,6 +8,7 @@ namespace App;
 
 use Extended\ACF\Fields\Image;
 use Extended\ACF\Fields\Link;
+use Extended\ACF\Fields\Message;
 use Extended\ACF\Fields\RadioButton;
 use Extended\ACF\Fields\Repeater;
 use Extended\ACF\Fields\Tab;
@@ -149,24 +150,25 @@ add_action('widgets_init', function () {
  */
 add_action('init', function () {
   register_extended_post_type('cardapio');
-  register_extended_taxonomy('Categoria', 'cardapio');
+  register_extended_taxonomy('categoria', 'cardapio');
 });
 
 /**
- * Register ACF Blocks 
+ * Register ACF Blocks
  */
-
 add_action( 'init', function() {
   register_block_type( TEMPLATEPATH . '/resources/views/blocks/guia' );
+  register_block_type( TEMPLATEPATH . '/resources/views/blocks/titulo' );
+  register_block_type( TEMPLATEPATH . '/resources/views/blocks/cardapio' );
 });
-// function register_acf_blocks() {
-  
-// }
 
 /**
  *
  */
 add_action('acf/init', function () {
+  /**
+   * Fields para configurações do site
+   */
   register_extended_field_group([
     'title' => 'Configuração do template',
     'fields' => [
@@ -191,7 +193,8 @@ add_action('acf/init', function () {
       Tab::make('Bottom bar'),
         Text::make('Atendimento Telefone', 'bottom_phone')->instructions('Somente números'),
         Text::make('Atendimento WhatsApp', 'bottom_whatsapp')->instructions('Somente números'),
-        Text::make('Instagram', 'bottom_instagram')
+        Text::make('Instagram', 'bottom_instagram'),
+      Tab::make('')
     ],
     'location' => [
       Location::where('options_page', '=', 'general-settings')
@@ -199,11 +202,12 @@ add_action('acf/init', function () {
     'style' => 'default'
   ]);
 
+  /**
+   * Fields para configurações do bloco guia
+   */
   register_extended_field_group([
     'title' => 'Configuração do bloco Guia',
     'fields' => [
-      Text::make('Título', 'titulo')->wrapper(['width' => '50']),
-      Text::make('Subtítulo', 'subtitulo')->wrapper(['width' => '50']),
       Repeater::make('Lista de itens do Guia', 'lista_itens_guia')
         ->fields([
           Text::make('Número item', 'numero_item'),
@@ -212,6 +216,53 @@ add_action('acf/init', function () {
     ],
     'location' => [
       Location::where('block', '=', 'acf/guia')
+    ],
+    'style' => 'default'
+  ]);
+
+  /**
+   * Bloco de titulo e sub-titulo
+   */
+  register_extended_field_group([
+    'title' => 'Título e sub titulo',
+    'fields' => [
+      Text::make('Título', 'titulo')->wrapper(['width' => '50']),
+      Text::make('Subtítulo', 'subtitulo')->wrapper(['width' => '50']),
+    ],
+    'location' => [
+      Location::where('block', '=', 'acf/titulo')
+    ],
+    'style' => 'default'
+  ]);
+
+  /**
+   * Fields para slider do site
+   */
+  register_extended_field_group([
+    'title' => 'Image Slider',
+    'fields' => [
+      Repeater::make('Add Slider', 'slider_principal')
+        ->fields([
+          Link::make('Linkar página', 'link_oage')->returnFormat('url'),
+          Image::make('Slider image', 'slider_image')->returnFormat('url')
+        ])
+    ],
+    'location' => [
+      Location::where('options_page', '=', 'site-slider')
+    ],
+    'style' => 'default'
+  ]);
+
+  /**
+   * Fields para slider do site
+   */
+  register_extended_field_group([
+    'title' => 'Cardapio',
+    'fields' => [
+      Message::make('Este bloco utilizar a lista de itens do menu cardápio')
+    ],
+    'location' => [
+      Location::where('block', '=', 'acf/cardapio')
     ],
     'style' => 'default'
   ]);

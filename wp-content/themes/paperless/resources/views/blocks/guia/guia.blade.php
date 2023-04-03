@@ -1,8 +1,3 @@
-<div class="mb-4">
-    <h2><?php the_field('titulo'); ?></h2>
-    <p><?php the_field('subtitulo'); ?></p>
-</div>
-
 <div class="main-guia mb-4">
     <div class="main-guia__grid main-guia__linha-canal">
         <?php if( have_rows('lista_itens_guia') ): ?>

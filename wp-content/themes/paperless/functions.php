@@ -129,4 +129,13 @@ if (function_exists('acf_add_options_page')) {
     'position' => '2',
   ));
 
+  acf_add_options_page(array(
+    'page_title' => 'Site Slider',
+    'menu_title' => 'Site slider',
+    'menu_slug'  => 'site-slider',
+    'capability' => 'edit_posts',
+    'redirect' => false,
+    'position' => '2',
+  ));
+
 }

@@ -1,0 +1,16 @@
+{
+  "name": "acf/titulo",
+  "title": "Titulo e sub titulo página",
+  "description": "Um bloco para inserção de título e sub-titulo.",
+  "category": "formatting",
+  "icon": "admin-comments",
+  "keywords": [
+    "guia",
+    "canal"
+  ],
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "block-titulo.blade.php"
+  },
+  "align": "full"
+}

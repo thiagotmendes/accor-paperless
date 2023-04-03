@@ -1,0 +1,16 @@
+{
+  "name": "acf/cardapio",
+  "title": "Cardápio",
+  "description": "Cria o cardapio no site.",
+  "category": "formatting",
+  "icon": "admin-comments",
+  "keywords": [
+    "guia",
+    "canal"
+  ],
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "cardapio.blade.php"
+  },
+  "align": "full"
+}

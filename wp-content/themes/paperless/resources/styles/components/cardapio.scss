@@ -5,9 +5,18 @@
     font-weight: 500;
     font-size: 11.7678px;
     line-height: 14px;
-    text-align: center;
     color: #FFFFFF;
     padding: 8px 5px;
     text-decoration: none;
+    height: 100%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    &--container {
+      display: grid;
+    }
   }
 }
