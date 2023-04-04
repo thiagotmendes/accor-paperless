@@ -1,4 +1,4 @@
-<header class="main-banner__titulo" style="color: {{ (!empty($colors))? $colors['principal-color'] : '' }}">
+<header class="main-banner__titulo" style="color:<?= get_theme_mod('primary_color', 'black') ?> ">
   <h1 class="main-title">
     <?= get_field('titulo') ?>
   </h1>

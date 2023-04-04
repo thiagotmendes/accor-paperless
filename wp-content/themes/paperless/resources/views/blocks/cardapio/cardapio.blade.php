@@ -8,7 +8,7 @@
 
     foreach ($terms as $term) {
       ?>
-      <a href="#<?= $term->slug ?>" class="swiper-slide main-cardapio__menu" style="background-color: blue">
+      <a href="#<?= $term->slug ?>" class="swiper-slide main-cardapio__menu" style="background-color: <?= get_theme_mod('primary_color', 'black') ?>">
       <?= $term->name ?>
       </a>
     <?php
@@ -25,7 +25,7 @@ $terms = get_terms( array(
 foreach ($terms as $term) {
   ?>
 <div id="<?= $term->slug ?>" class="mt-4 mb-4">
-  <h2 class="main-title main-title__cardapio" style="background: linear-gradient(to right, blue 2.5%, white 2.5%)">
+  <h2 class="main-title main-title__cardapio" style="background: linear-gradient(to right, <?= get_theme_mod('primary_color', 'black') ?> 2.5%, white 2.5%)">
     <?= $term->name ?>
   </h2>
 </div>
@@ -54,7 +54,7 @@ foreach ($terms as $term) {
           <p>R$ 39,00</p>
         </div>
         <div class="">
-          <img src="{{ asset('images/cardapio1.png') }}" alt="" class="">
+          <img src="<?= get_template_directory_uri() ?>/public/images/cardapio1.png" alt="" class="">
         </div>
       </div>
     <?php

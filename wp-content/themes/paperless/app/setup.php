@@ -259,7 +259,7 @@ add_action('acf/init', function () {
   register_extended_field_group([
     'title' => 'Cardapio',
     'fields' => [
-      Message::make('Este bloco utilizar a lista de itens do menu cardápio')
+      Message::make('Este bloco utilizar a lista de itens do menu cardápio'),
     ],
     'location' => [
       Location::where('block', '=', 'acf/cardapio')
@@ -267,3 +267,4 @@ add_action('acf/init', function () {
     'style' => 'default'
   ]);
 });
+
