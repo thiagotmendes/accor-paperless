@@ -260,6 +260,13 @@ add_action('acf/init', function () {
     'title' => 'Cardapio',
     'fields' => [
       Message::make('Este bloco utilizar a lista de itens do menu cardápio'),
+      RadioButton::make('Esolha o tipo de cardápio', 'tipo_cardapio')
+        ->choices([
+          'cardapio_categoria' => 'Cardápio com menu superior' ,
+          'cardapio_lista' => 'Cardápio em lista corrida'
+        ])
+        ->returnFormat('value')
+        ->layout('horizontal')
     ],
     'location' => [
       Location::where('block', '=', 'acf/cardapio')
