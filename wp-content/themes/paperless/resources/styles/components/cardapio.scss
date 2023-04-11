@@ -35,9 +35,13 @@
 .item-cardapio {
   display: flex;
   flex-direction: column;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 500;
   margin-bottom: 15px;
+
+  &--preco {
+    font-size: 0.875rem;
+  }
 
   &__detalhes-item {
     font-size: 0.625rem;
