@@ -81,7 +81,7 @@ function mytheme_customize_register($wp_customize)
   ));
 
 
-  $wp_customize->add_setting('secodary_color', array(
+  $wp_customize->add_setting('secondary_color', array(
     'default' => '#45ace0',
   ));
 
@@ -96,7 +96,7 @@ function mytheme_customize_register($wp_customize)
   $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'secondary_theme_color', array(
     'label' => 'Cor secundaria',
     'section' => 'theme_color_section',
-    'settings' => 'secodary_color'
+    'settings' => 'secondary_color'
   )));
 
 }

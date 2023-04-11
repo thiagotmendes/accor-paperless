@@ -45,7 +45,7 @@ class App extends Composer
     public function color() {
         return [
             'principal-color' => get_theme_mod('primary_color', 'black'),
-            'secondary-color' => get_theme_mod('secodary_color', 'white')
+            'secondary-color' => get_theme_mod('secondary_color', 'white')
         ];
     }
 }

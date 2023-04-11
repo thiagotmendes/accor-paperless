@@ -1,52 +1,25 @@
 <div class="container main-cardapio__grid">
-  <div class="item-cardapio">
-    Água com gás
+    <?php
+    $arrayCardapio = array(
+      'post_type' => 'cardapio',
+      'posts_per_page' => -1,
+    );
 
-    <span class="item-cardapio__detalhes-item">Crystal</span>
-  </div>
-  <div class="item-cardapio">
-    R$3,00
-  </div>
+    $loopCardapio = new WP_Query($arrayCardapio);
+    if($loopCardapio->have_posts()) {
+      while ($loopCardapio->have_posts()) {
+        $loopCardapio->the_post();
+        ?>
+        <div class="item-cardapio">
+          <?= get_field('titulo_cardapio', get_the_ID()) ?>
 
-  <div class="item-cardapio">
-    Refrigerante Lata
-    <span class="item-cardapio__detalhes-item">Coca-Cola, Sprite, Fanta, Guaraná . 355ml</span>
-  </div>
-  <div class="item-cardapio">
-    R$4,50
-  </div>
-
-  <div class="item-cardapio">
-    Salgadinho Chips
-
-    <span class="item-cardapio__detalhes-item">Ruffles, Fandangos, Cheetos . 110g</span>
-  </div>
-  <div class="item-cardapio">
-    R$6,00
-  </div>
-
-  <div class="item-cardapio">
-    Sopa Instantânea
-    <span class="item-cardapio__detalhes-item">Cup Noodles . 150g</span>
-  </div>
-  <div class="item-cardapio">
-    R$7,50
-  </div>
-
-  <div class="item-cardapio">
-    Pizza Congelada
-
-    <span class="item-cardapio__detalhes-item">Sadia . 650g</span>
-  </div>
-  <div class="item-cardapio">
-    R$16,00
-  </div>
-
-  <div class="item-cardapio">
-    Cerveja Lata
-    <span class="item-cardapio__detalhes-item">Skol, Heineken, Petra . 355ml</span>
-  </div>
-  <div class="item-cardapio">
-    R$5,50
-  </div>
+          <span class="item-cardapio__detalhes-item"><?= get_field('descricao_cardapio', get_the_ID()) ?></span>
+        </div>
+        <div class="item-cardapio">
+          <?= (get_field('preco_cardapio', get_the_ID()))? "R$ " .get_field('preco_cardapio', get_the_ID()) : ""; ?>
+        </div>
+        <?php
+      }
+    }
+    ?>
 </div>

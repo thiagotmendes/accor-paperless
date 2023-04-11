@@ -15,6 +15,11 @@
     flex-direction: column;
     justify-content: center;
 
+    &:focus, &:hover {
+      color: white;
+    }
+
+
     &--container {
       display: grid;
     }

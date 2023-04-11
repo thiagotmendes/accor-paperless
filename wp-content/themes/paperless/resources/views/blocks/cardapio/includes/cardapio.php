@@ -31,12 +31,18 @@ foreach ($terms as $term) {
       ?>
       <div class="main-box main-box__cardapio">
         <div class="">
-          <h4><?php the_title() ?></h4>
-          <p>(folhas, tomate cereja e palmito)</p>
-          <p>R$ 39,00</p>
+          <h4><?= get_field('titulo_cardapio', get_the_ID()) ?></h4>
+          <p><?= get_field('descricao_cardapio', get_the_ID()) ?></p>
+          <p><?= (get_field('preco_cardapio', get_the_ID()))? "R$ " .get_field('preco_cardapio', get_the_ID()) : ""; ?></p>
         </div>
         <div class="">
-          <img src="<?= get_template_directory_uri() ?>/public/images/cardapio1.png" alt="" class="">
+          <?php
+          $img = esc_url( wp_get_attachment_url( get_theme_mod( 'custom_logo' ) ) );
+          if(has_post_thumbnail()) {
+            $img = get_the_post_thumbnail_url();
+          }
+          ?>
+          <img src="<?= $img ?>" alt="" class="" width="66" height="66" />
         </div>
       </div>
       <?php

@@ -13,6 +13,7 @@ use Extended\ACF\Fields\RadioButton;
 use Extended\ACF\Fields\Repeater;
 use Extended\ACF\Fields\Tab;
 use Extended\ACF\Fields\Text;
+use Extended\ACF\Fields\Textarea;
 use Extended\ACF\Fields\WysiwygEditor;
 use Extended\ACF\Location;
 use function Roots\bundle;
@@ -149,7 +150,22 @@ add_action('widgets_init', function () {
  * Register post types
  */
 add_action('init', function () {
-  register_extended_post_type('cardapio');
+  register_extended_post_type('cardapio', array(
+    'supports' => [
+      'title',
+      'thumbnail',
+      'page-attributes'
+    ],
+    'admin_cols' => array(
+      'featured_image' => array(
+        'title'          => 'Imagem destaque',
+        'featured_image' => 'thumbnail'
+      ),
+      'categoria' => array(
+        'taxonomy' => 'categoria'
+      )
+    )
+  ));
   register_extended_taxonomy('categoria', 'cardapio');
 });
 
@@ -270,6 +286,22 @@ add_action('acf/init', function () {
     ],
     'location' => [
       Location::where('block', '=', 'acf/cardapio')
+    ],
+    'style' => 'default'
+  ]);
+
+  /**
+   * Fields para custom post type cardapio
+   */
+  register_extended_field_group([
+    'title' => 'Configurar item de cardapio',
+    'fields' => [
+      Text::make('Nome do prato', 'titulo_cardapio')->wrapper(['width' => 50])->instructions('Nome a ser exibido no cardápio'),
+      Text::make('Preço', 'preco_cardapio')->wrapper(['width' => 50])->instructions('Utilize números separados por virgulas'),
+      Textarea::make('Descrição do prato', 'descricao_cardapio')
+    ],
+    'location' => [
+      Location::where('post_type', '=', 'cardapio')
     ],
     'style' => 'default'
   ]);
