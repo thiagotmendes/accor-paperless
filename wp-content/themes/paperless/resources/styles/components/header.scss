@@ -3,6 +3,25 @@
   padding-bottom: 1rem;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   background-color: white;
+
+  &__back-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22%;
+
+    .icon-back {
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &__logo {
+    width: 55%;
+  }
 }
